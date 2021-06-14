@@ -1,0 +1,33 @@
+<x-app-layout>
+<x-slot name="head">
+  <title>{{config('app.name') . ' - ' . __('Products')}}</title>
+  <meta name="description" content="{{config('app.name') . ' - ' . __('Products')}}">
+</x-slot>
+<div class="max-w-3xl px-6 mx-auto my-8">
+  <h1 class="text-4xl font-bold mb-8 uppercase text-center">{{__('Products')}}</h1>
+  @forelse ($products as $product)
+    <section class="bg-white sm:flex rounded shadow-lg overflow-hidden items-center mb-8">
+      <div class="shadow relative">
+        <nav class="absolute bottom-0 text-sm font-semibold text-white p-3 flex space-x-1 z-10">
+          @foreach ($product->categories as $category)
+              <a href="{{route('category.show', $category->slug)}}" class="px-2 py-1" style="background-color: {{$category->color}};">{{$category->name}}</a>
+          @endforeach
+        </nav>
+        <a href="{{$product->path()}}" class="block w-64 h-64 mx-auto">
+          <img width="400" height="400" src="{{asset('storage/uploads/products') . '/' . $product->img}}" class="lazyload p-4 object-cover" alt="{{$product->seo_title}}">
+        </a>
+      </div>
+      <div class="flex-1">
+        <div class="p-8">
+          <a href="{{$product->path()}}" class="font-bold text-xl sm:text-lg block">{{str_limit($product->title, 80)}}</a>
+          <p class="text-sm sm:text-xs text-gray-600 mt-1 uppercase"><span>{{__('Reviewed by:')}}</span> <a href="/author/{{$product->author->id}}" class="text-purple-700">{{$product->author->name}}</a> - {{$product->created_at->diffForHumans()}}</p>
+          <p class="mt-4 text-gray-600">{{ str_limit($product->summary, 150) }}</p>
+        </div>
+      </div>
+    </section>
+  @empty
+  <p>{{__('There is no category or post yet.')}}</p>
+  @endforelse
+  {{$products->links('pagination')}}
+</div>
+</x-app-layout>

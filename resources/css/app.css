@@ -1,0 +1,47 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './fonts.css';
+
+.fonts-loaded{
+  font-family: 'Source Sans Pro', Helvetica, serif;
+}
+
+.lazyload {
+	opacity: 0;
+}
+
+.lazyloading {
+	opacity: 1;
+	transition: opacity 300ms;
+	background: #f7f7f7 no-repeat center;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #000;
+}
+
+.svg-icon circle {
+  stroke: #000;
+  stroke-width: 1;
+}
+
+.content > * {
+  margin-bottom: 2rem;
+}
+
+@responsive {
+  .h-greeting {
+    height: 40rem;
+  }
+  .w-content {
+    width: 56rem;
+  }
+}

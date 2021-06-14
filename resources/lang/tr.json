@@ -1,0 +1,124 @@
+{
+    "Name": "Ad",
+    "Email": "Eposta",
+    "Password": "Şifre",
+    "Confirm Password": "Şifreyi onayla",
+    "Remember me": "Beni hatırla",
+    "Forgot your password?": "Şifrenizi mi unuttunuz?",
+    "Reset Password": "Şifreyi Sıfırla",
+    "Log in": "Giriş Yap",
+    "Login": "Giriş",
+    "Already registered?": "Zaten üye misiniz?",
+    "Register": "Kayıt ol",
+    "Confirm": "Onayla",
+    "Log out": "Çıkış yap",
+    "Logout": "Çıkış",
+
+    "Email Password Reset Link": "Epostayla Şifre Sıfırlama Linki",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Şifrenizi mi unuttunuz? Önemli değil, bize mail adresinizi söyleyin size sıfırlama maili yollayalım.",
+
+    "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "Üye olduğunuz için teşekkürler! Başlamadan önce size attığımız mail ile üyeliğinizi onaylayabilir misiniz? Eğer mail almadıysanız, size tekrar gönderebiliriz.",
+    "A new verification link has been sent to the email address you provided during registration.": "Doğrulama maili kayıt olurken belirttiğiniz adrese yollandı.",
+    "Resend Verification Email": "Doğrulama Mailini Tekrar Yolla",
+    "This is a secure area of the application. Please confirm your password before continuing.": "Uygulamanın güvenli alanındasınız. Lütfen devam etmeden önce şifrenizi giriniz.",
+
+    "Confirm Password Page": "Şifre Doğrulama Sayfası",
+    "Forgot Password Page": "Şifremi Unuttum Sayfası",
+    "Login Page": "Giriş Sayfası",
+    "Registration Page": "Kayıt Olma Sayfası",
+    "Password Reset Page": "Şifre Sıfırlama Sayfası",
+    "Email Verification Page": "Eposta Doğrulama Sayfası",
+
+    "Whoops! Something went wrong.": "Sanırım bir şeyler ters gitti.",
+
+    "Create a New": "Yeni oluştur",
+    "Review": "İnceleme",
+    "Product": "Ürün",
+    "Post": "Yazı",
+
+    "Admin Panel": "Yönetici Paneli",
+    "Profile Edit": "Profili Düzenle",
+
+    "Home": "Anasayfa",
+    "Categories": "Kategoriler",
+    "Reviews": "İncelemeler",
+    "Products": "Ürünler",
+    "Posts": "Yazılar",
+    "About": "Hakkında",
+    "About Us": "Hakkımızda",
+    "Contact": "İletişim",
+    "Contact Us": "İletişime Geçin",
+
+    "Subject": "Konu",
+    "Message": "Mesaj",
+    "Send": "Gönder",
+    "Drop Us a Message": "Bize Mesaj Bırakın",
+    "Don't hesitate to get in touch. We will reply you as soon as possible.": "İletişim kurmak için çekinmeyin. En kısa sürede cevap vereceğiz.",
+
+    "Search": "Ara",
+    "Search...": "Ara...",
+
+    "Homepage": "Anasayfa",
+    "Electronics": "Elektronik",
+    "Home & Garden": "Ev & Bahçe",
+    "Beauty & Cosmetic": "Kozmetik & Bakım",
+    "Kids & Baby": "Bebek & Çocuk",
+    "Clothing": "Giyim",
+    "Outdoor": "Doğa & Açık Hava",
+    "Lifestyle": "Yaşam Tarzı",
+    "Pets": "Evcil Hayvanlar",
+    "Music": "Müzik",
+    "Health": "Sağlık",
+
+    "Toggle category panel": "Kategori panelini aç",
+    "Open searchbox": "Arama kutusunu aç",
+    "Open menu": "Menüyü aç",
+    "Slide previous": "Slaytı sola kaydır",
+    "Slide next": "Slaytı sağa kaydır",
+
+    "All rights reserved.": "Tüm hakları saklıdır.",
+    "Useful Links": "Site Linkleri",
+    "Cookies Policy": "Çerez Politikası",
+    "Privacy Policy": "Gizlilik Politikası",
+    "Terms of Service": "Kullanım Koşulları",
+
+    "Follow Us": "Bizi Takip Edin",
+
+    "Affiliate Disclosure": "Gelir Ortaklığı Sözleşmesi",
+    "Disclosure: Eniyiucuz.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.": "Sözleşme: ReviewsByPeople.com birçok gelirortaklığı programına katılarak ilgili sitelere link verip, gelirortaklığına tâbi oranda gelir sağlamaktadır.",
+
+    "Reviewed by:": "İnceleyen:",
+
+    "Latest Reviews": "Güncel İncelemeler",
+    "Latest Posts": "Güncel Yazılar",
+    "More...": "Daha...",
+
+    "Let's hang out on social": "Haydi sosyal medyada takılalım",
+
+    "Editor Picks": "Editör Seçimi",
+
+    "Comments": "Yorumlar",
+    "Have Something to Say?": "Eklemek İstediğin Bir Şey Var Mı?",
+    "Leave a comment": "Bir yorum bırak",
+    "Reply": "Cevapla",
+    "*Comments contain URLs are not allowed.": "*URL içeren yorumlara izin verilmiyor.",
+    "Cancel": "İptal",
+
+    "Check Price": "Fiyata Bak",
+    "Read Review": "Yazıya Git",
+    "Table of Contents": "İçerik Tablosu",
+    "Last Updated": "Son Güncelleme",
+    "Tags": "Etiketler",
+    "Comment": "Yorum",
+    "Leave the first comment": "İlk yorumu bırak",
+
+    "Related Reviews": "İlgili İncelemeler",
+    "Similar Products": "Benzer Ürünler",
+    "Related Posts": "İlgili Yazılar",
+
+    "There is no category or post yet.": "Herhangi bir kategori veya yazı eklenmemiş.",
+
+    "Search Results": "Arama Sonuçları",
+    "Nothing found.": "Herhangi bir şey bulunmadı."
+
+}
