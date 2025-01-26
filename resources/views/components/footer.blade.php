@@ -7,7 +7,7 @@
       <p class="text-sm text-gray-400 mt-3">© 2021 {{config('app.name')}} <br>{{__('All rights reserved.')}}</p>
     </div>
     <div>
-      <h1 class="font-bold text-xl">{{__('Useful Links')}}</h1>
+      <h2 class="font-bold text-xl">{{__('Useful Links')}}</h2>
       <ul class="flex flex-col space-y-2 mt-3">
         <li><a href="{{route('home')}}">{{__('Home')}}</a></li>
         <li><a href="{{route('review.index')}}">{{__('Reviews')}}</a></li>
@@ -21,7 +21,7 @@
       </ul>
     </div>
     <div>
-      <h1 class="font-bold text-xl">{{__('Follow Us')}}</h1>
+      <h2 class="font-bold text-xl">{{__('Follow Us')}}</h2>
       <div class="flex space-x-2 mt-3">
         <a href="#" class="py-2" aria-label="Facebook">
           <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 20 20">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div>
-      <h1 class="font-bold text-xl">{{__('Affiliate Disclosure')}}</h1>
+      <h2 class="font-bold text-xl">{{__('Affiliate Disclosure')}}</h2>
       <p class="text-sm text-gray-400 mt-3">{{__('Disclosure: ReviewsByPeople.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.')}}</p>
     </div>
   </div>

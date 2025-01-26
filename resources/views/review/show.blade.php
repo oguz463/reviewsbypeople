@@ -274,7 +274,7 @@
       <section id="author" class="flex p-8 flex-col lg:flex-row space-y-8 items-center lg:space-y-0 lg:space-x-8 border border-gray-300 text-center lg:text-left mb-8">
         <img data-src="{{$review->author["meta"]["img"] ?? asset('images/no-avatar.jpg')}}" alt="{{$review->author->name}}" height="100" width="100" class="object-cover w-32 lazyload">
         <div class="flex-1">
-          <h1 class="font-bold text-lg">{{$review->author->name}}</h1>
+          <h2 class="font-bold text-lg">{{$review->author->name}}</h2>
           <p>{{$review->author["meta"]["sum"]}}</p>
         </div>
       </section>
@@ -352,7 +352,7 @@
       <section id="related" style="margin-top: 4rem;">
         <aside class="flex flex-col">
           <hr class="border-t-4 border-gray-500 mb-4">
-          <h1 class="text-2xl font-bold text-center lg:text-left mb-4 uppercase">{{__('Related Reviews')}}</h1>
+          <h2 class="text-2xl font-bold text-center lg:text-left mb-4 uppercase">{{__('Related Reviews')}}</h2>
           <div id="swiper-slider" class="hidden relative w-full mx-auto flex-row">
             <div class="absolute inset-y-0 left-0 z-10 flex items-center">
               <button id="swiper-prev-button" aria-label="{{__('Slide previous')}}"

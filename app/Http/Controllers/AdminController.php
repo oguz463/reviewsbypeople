@@ -85,7 +85,7 @@ class AdminController extends Controller
     public function comment_submit(Comment $comment)
     {
         $comment->update([
-            'published_at' => null
+            'published_at' => now()
         ]);
 
         return back();

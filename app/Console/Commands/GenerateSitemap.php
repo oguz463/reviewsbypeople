@@ -36,7 +36,6 @@ class GenerateSitemap extends Command
         $sitemap = Sitemap::create()
         ->add(Url::create('/'))
         ->add(Url::create('/about'))
-        ->add(Url::create('/contact'))
         ->add(Url::create('/privacy'))
         ->add(Url::create('/cookies-policy'))
         ->add(Url::create('/term-of-services'));
