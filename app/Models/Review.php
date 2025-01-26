@@ -9,7 +9,8 @@ use TOC\TocGenerator;
 
 class Review extends Model
 {
-    use Searchable, CommonRelations;
+    use Searchable;
+    use CommonRelations;
 
     public function toSearchableArray()
     {
@@ -59,19 +60,19 @@ class Review extends Model
                 preg_match_all("/(?<=\")[^\s][^\"]+/", $data, $values);
                 $productData = array_combine($tags[0], $values[0]);
                 $encode = urlencode($productData["data-title"]);
-                $url = "/redirect?l=" . urlencode("https://www.amazon.com/s?k={$encode}&tag=reviewsbypeople-20");
+                $url = "https://www.amazon.com/s?k={$encode}&tag=anymode-20";
                 $body = str_replace($productData["data-url"], $url, $body);
             } else { // product not in divs
                 preg_match_all("/href=\"(.+(?={$brokenAsin})[^\"]+)[^>]+.([^<\/]+)/", $body, $matches);
                 $find = $matches[1][0] ?? false;
                 $encode = isset($matches[2][0]) ? urlencode($matches[2][0]) : false;
                 if ($find && $encode) {
-                    $replace = "/redirect?l=" . urlencode("https://www.amazon.com/s?k={$encode}&tag=reviewsbypeople-20");
+                    $replace = "https://www.amazon.com/s?k={$encode}&tag=anymode-20";
                     $body = str_replace($find, $replace, $body);
                 }
             }
         }
-        
+
         $tocMarkup = $body;
 
 
@@ -82,25 +83,25 @@ class Review extends Model
         }
 
         preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^"]*noTOC[^\"]*\"|[^>]*title=\"[^\"]*\")[^>]*)>(.*)(<\/[hH][1-6]>)/', $tocMarkup, $matches);
-        
+
         foreach ($matches[0] as $index => $find) {
             $tocMarkup = str_replace($find, $matches[1][$index] . " id=\"" . Str::slug($matches[2][$index]) . "\">" . $matches[2][$index] . $matches[3][$index], $tocMarkup);
         }
-        
+
         $tocGenerator = new TocGenerator();
-        
+
         $toc = $tocGenerator->getHtmlMenu($tocMarkup);
-        
+
         preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*)>(.*)(<\/[hH][1-6]>)/', $body, $matches);
 
         foreach ($matches[0] as $index => $find) {
             $body = str_replace($find, $matches[1][$index] . " id=\"" . Str::slug($matches[2][$index]) . "\">" . $matches[2][$index] . $matches[3][$index], $body);
         }
 
-        preg_match_all('/https:\/\/(www.amazon.com|amzn.to)[^"]+/', $body, $links);
-        foreach ($links[0] as $link) {
-            $body = str_replace($link, "/redirect?l=" . urlencode($link), $body);
-        }
+        // preg_match_all('/https:\/\/(www.amazon.com|amzn.to)[^"]+/', $body, $links);
+        // foreach ($links[0] as $link) {
+        //     $body = str_replace($link, "/redirect?l=" . urlencode($link), $body);
+        // }
 
         $body = preg_replace(['/\>\s+/s', '/\s+</s', '/\n{2,8}/', '/\t/'], [">\n", "\n<", "\n", ""], $body);
         $toc = preg_replace(['/\n/', '/>\s*</'], ['', '> <'], $toc);

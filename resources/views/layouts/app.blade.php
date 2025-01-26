@@ -10,11 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer async></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <style>
-        [x-cloak] {
-            display: none !important;
-        }
 
         .js-cookie-consent.cookie-consent {
             position: fixed;
@@ -53,7 +51,7 @@
         }
     </style>
 </head>
-<body class="antialiased bg-gray-100 text-gray-900 min-h-screen overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100" x-data x-cloak>
+<body class="antialiased bg-gray-100 text-gray-900 min-h-screen overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100">
 <script>
 (function loadFont() {
       if (sessionStorage.fontsLoaded) {
@@ -76,7 +74,6 @@
     {{ $slot }}
 </main>
 <x-footer />
-@include('cookieConsent::index')
 @if ($errors->any())
   <div class="bg-red-100 border-2 rounded border-red-800 text-red-800 fixed bottom-20 right-20 z-100 w-full max-w-sm" style="z-index:999;P">
     <ul class="flex flex-col space-y-4 font-semibold list-disc px-12 py-4">

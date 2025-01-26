@@ -2,6 +2,7 @@
 <x-slot name="head">
 <title>{{config('app.name') . ' - ' . __('Contact Us')}}</title>
 <meta name="description" content="{{config('app.name') . ' - ' . __('Contact Us')}}">
+<meta name="robots" content="noindex">
 </x-slot>
 <div class="max-w-4xl px-6 mx-auto my-8">
   <aside class="text-lg">

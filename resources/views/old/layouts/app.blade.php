@@ -12,10 +12,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CSource+Sans+Pro:400,600,700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha512-k78e1fbYs09TQTqG79SpJdV4yXq8dX6ocfP0bzQHReQSbEghnS6AQHE2BbZKns962YaqgQL16l7PkiiAHZYvXQ==" crossorigin="anonymous" />
 <link rel="stylesheet" href="/css/old.css">
-<style type="text/css">
-.js-cookie-consent.cookie-consent {position: fixed; background-color: #f3f3f3; width: 100%; line-height: 34px; bottom: 0px; z-index: 2; text-align: center; padding-bottom: 10px; padding-top: 10px; opacity: 0.9; }
-button.js-cookie-consent-agree {    background: #9e9e9e; color: inherit; border: none; padding: 0 15px; font: inherit; cursor: pointer; outline: inherit; color: #fff; margin-left: 10px;}
-</style>
 @yield('css')
 <!-- Favicons -->
 {{-- <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
@@ -41,7 +37,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {{-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7VRRWG"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) --> --}}
-@include('cookieConsent::index')
 @include('old.layouts.partials.navbar')
 <div id="app">
 @yield('content')
