@@ -136,11 +136,11 @@ class PostController extends Controller
         'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
       ]);
 
-        if ($post->slug <> $request->slug) {
-            $redirect = new Redirect;
-            $redirect->old_url = "/post/{$post->slug}";
-            $redirect->new_url = "/post/{$request->slug}";
-            $redirect->save();
+        if ($request->slug && $post->slug !== $request->slug) {
+            Redirect::updateOrCreate(
+                ['old_url' => "/post/{$post->slug}"],
+                ['new_url' => "/post/{$request->slug}"],
+            );
         }
 
         if ($request->hasFile('image')) {

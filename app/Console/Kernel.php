@@ -25,6 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sitemap:generate')->daily();
+
+        // Search Console — only runs once the service-account key is in place.
+        if (is_file(config('searchconsole.key_path'))) {
+            $schedule->command('gsc:sitemap --submit')->dailyAt('05:10')->runInBackground();
+            $schedule->command('gsc:sync --days=120')->weeklyOn(1, '05:20')->runInBackground();
+        }
     }
 
     /**

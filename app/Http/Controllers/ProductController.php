@@ -146,11 +146,11 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
         ]);
 
-        if ($product->slug <> $request->slug) {
-            $redirect = new Redirect;
-            $redirect->old_url = '/product' . '/' . $product->slug;
-            $redirect->new_url = '/product' . '/' . $request->slug;
-            $redirect->save();
+        if ($request->slug && $product->slug !== $request->slug) {
+            Redirect::updateOrCreate(
+                ['old_url' => '/product/'.$product->slug],
+                ['new_url' => '/product/'.$request->slug],
+            );
         }
 
         if ($request->hasFile('image')) {
