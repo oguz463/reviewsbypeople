@@ -42,13 +42,13 @@ class Post extends Model
 
         $tocMarkup = $body;
 
-        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*title=\"([^\"]*)\"[^>]*)>(.*)(<\/[hH][1-6])/', $tocMarkup, $matches);
+        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*title=\"([^\"]*)\"[^>]*)>(.*?)(<\/[hH][1-6])/', $tocMarkup, $matches);
 
         foreach ($matches[0] as $index => $find) {
             $tocMarkup = str_replace($find, $matches[1][$index] . " id=\"" . Str::slug($matches[3][$index]) . "\">" . $matches[2][$index] . $matches[4][$index], $tocMarkup);
         }
 
-        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^"]*noTOC[^\"]*\"|[^>]*title=\"[^\"]*\")[^>]*)>(.*)(<\/[hH][1-6]>)/', $tocMarkup, $matches);
+        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^"]*noTOC[^\"]*\"|[^>]*title=\"[^\"]*\")[^>]*)>(.*?)(<\/[hH][1-6]>)/', $tocMarkup, $matches);
         
         foreach ($matches[0] as $index => $find) {
             $tocMarkup = str_replace($find, $matches[1][$index] . " id=\"" . Str::slug($matches[2][$index]) . "\">" . $matches[2][$index] . $matches[3][$index], $tocMarkup);
@@ -58,7 +58,7 @@ class Post extends Model
         
         $toc = $tocGenerator->getHtmlMenu($tocMarkup);
         
-        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*)>(.*)(<\/[hH][1-6]>)/', $body, $matches);
+        preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*)>(.*?)(<\/[hH][1-6]>)/', $body, $matches);
 
         foreach ($matches[0] as $index => $find) {
             $body = str_replace($find, $matches[1][$index] . " id=\"" . Str::slug($matches[2][$index]) . "\">" . $matches[2][$index] . $matches[3][$index], $body);
