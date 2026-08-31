@@ -12,6 +12,7 @@
         "anhskohbo/no-captcha": "^3.3",
         "caseyamcl/toc": "^3.0",
         "creativeorange/gravatar": "^1.0",
+        "google/apiclient": "^2.18",
         "guzzlehttp/guzzle": "^7.0.1",
         "http-interop/http-factory-guzzle": "^1.2",
         "intervention/image": "^2.5",

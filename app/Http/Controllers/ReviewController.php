@@ -201,11 +201,11 @@ class ReviewController extends Controller
 
         $slug = $request->slug ? str_slug($request->slug, '-') : str_slug($request->title, '-');
 
-        if ($review->slug <> $request->slug) {
-            $redirect = new Redirect;
-            $redirect->old_url = '/'. $review->slug;
-            $redirect->new_url = '/'. $request->slug;
-            $redirect->save();
+        if ($slug && $review->slug !== $slug) {
+            Redirect::updateOrCreate(
+                ['old_url' => '/'.$review->slug],
+                ['new_url' => '/'.$slug],
+            );
         }
 
         if ($request->hasFile('featured')) {
