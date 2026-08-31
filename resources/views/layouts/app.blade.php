@@ -4,13 +4,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#991b1b">
 
     {{ $head ?? '' }}
+
+    @php
+        $orgSchema = [
+            "@context" => "https://schema.org",
+            "@graph" => [
+                [
+                    "@type" => "Organization",
+                    "@id" => url('/') . '#organization',
+                    "name" => config('app.name'),
+                    "url" => url('/'),
+                    "logo" => ["@type" => "ImageObject", "url" => asset('images/logo.png')],
+                ],
+                [
+                    "@type" => "WebSite",
+                    "@id" => url('/') . '#website',
+                    "name" => config('app.name'),
+                    "url" => url('/'),
+                    "publisher" => ["@id" => url('/') . '#organization'],
+                    "potentialAction" => [
+                        "@type" => "SearchAction",
+                        "target" => [
+                            "@type" => "EntryPoint",
+                            "urlTemplate" => url('/search') . '?query={search_term_string}',
+                        ],
+                        "query-input" => "required name=search_term_string",
+                    ],
+                ],
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($orgSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <style>
 

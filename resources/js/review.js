@@ -52,6 +52,7 @@
     let checkPriceBottomUrl = checkPriceBottomContainer.appendChild(document.createElement("a"));
     checkPriceBottomUrl.setAttribute("class", "px-4 py-3 bg-red-800 text-lg text-white truncate overflow-hidden");
     checkPriceBottomUrl.href = reviews[0].dataset.url;
+    checkPriceBottomUrl.rel = "nofollow sponsored";
     checkPriceBottomUrl.textContent = "Check Price";
 
     let footer = document.querySelector("footer");
@@ -100,23 +101,26 @@
         if(img){
             let link = document.createElement('a');
             link.href = review_url;
+            link.rel = "nofollow sponsored";
 
             img.parentNode.insertBefore(link, img);
 
             link.appendChild(img);
         }
 
-        let checkprice = '<div class="checkprice"><div class="image"><img width="400" height="400" class="lazyload" data-src="' + review_image + '" alt="' + review_title + '" /></div><div class="title">' + review_title + '</div><div class="url"><a href="' + review_url + '">Check Price</a></div></div>';
+        let checkprice = '<div class="checkprice"><div class="image"><img width="400" height="400" class="lazyload" data-src="' + review_image + '" alt="' + review_title + '" /></div><div class="title">' + review_title + '</div><div class="url"><a href="' + review_url + '" rel="nofollow sponsored">Check Price</a></div></div>';
         
         checkpriceNode = document.createRange().createContextualFragment(checkprice);
 
         reviews[i].appendChild(checkpriceNode);
     }
 
-    //Add noopener to all external links
+    //Add noopener to all external links, preserving any existing rel values (e.g. nofollow sponsored)
     document.querySelectorAll("a").forEach(link => {
         if (link.href.indexOf(window.location.origin) && link.href){
-            link.rel = "noopener";
+            let rel = link.rel ? link.rel.split(/\s+/).filter(Boolean) : [];
+            if (!rel.includes("noopener")) rel.push("noopener");
+            link.rel = rel.join(" ");
         }
     });
 

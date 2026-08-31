@@ -1,12 +1,42 @@
 <x-app-layout>
 <x-slot name="head">
-  <title>{{config('app.name') . ' - ' . __('Categories')}}</title>
-  <meta name="description" content="{{config('app.name') . ' - ' . __('Categories')}}">
+  @php $categoriesDescription = 'Browse every product category on ReviewsByPeople — electronics, home & garden, kids & baby, outdoor, pets and more, each with hands-on reviews and buying guides.'; @endphp
+  <title>All Review Categories | {{ config('app.name') }}</title>
+  <meta name="description" content="{{ $categoriesDescription }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{ route('category.index') }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="All Review Categories" />
+  <meta property="og:description" content="{{ $categoriesDescription }}" />
+  <meta property="og:url" content="{{ route('category.index') }}" />
+  <meta property="og:site_name" content="{{ config('app.name') }}" />
+  @php
+    $categoriesSchema = [
+      "@context" => "https://schema.org",
+      "@type" => "BreadcrumbList",
+      "itemListElement" => [
+        ["@type" => "ListItem", "position" => 1, "name" => "Home", "item" => url('/')],
+        ["@type" => "ListItem", "position" => 2, "name" => "Categories", "item" => route('category.index')],
+      ],
+    ];
+  @endphp
+  <script type="application/ld+json">{!! json_encode($categoriesSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </x-slot>
+<div class="max-w-7xl px-6 mx-auto my-8">
+  <nav aria-label="Breadcrumb" class="text-sm text-gray-500 mb-6">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <li><a href="{{ url('/') }}" class="hover:underline">{{ __('Home') }}</a></li>
+      <li aria-hidden="true" class="text-gray-300">/</li>
+      <li class="text-gray-700 font-medium" aria-current="page">{{ __('Categories') }}</li>
+    </ol>
+  </nav>
+  <h1 class="text-3xl font-bold uppercase mb-2">{{ __('Review Categories') }}</h1>
+  <p class="text-gray-600 mb-8 max-w-2xl">{{ $categoriesDescription }}</p>
+</div>
 <div class="max-w-7xl px-6 mx-auto my-8 grid gap-8 lg:gap-24 lg:grid-cols-2 auto-cols-fr">
   @forelse ($categories as $index => $category)
       <section>
-        <h1 class="text-2xl font-bold uppercase mb-8"><a href="{{ route('category.show', $category[0]->category_slug)}}">{{ __($category[0]->category_name) }}</a></h1>
+        <h2 class="text-2xl font-bold uppercase mb-8"><a href="{{ route('category.show', $category[0]->category_slug)}}">{{ __($category[0]->category_name) }}</a></h2>
         <div class="flex flex-wrap space-x-8">
           <div class="w-full lg:flex-1 flex flex-col h-80 relative mb-8">
             <div class="absolute inset-0 w-full h-80 bg-gradient-to-t from-black to-transparent"></div>

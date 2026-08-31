@@ -13,12 +13,14 @@
         "caseyamcl/toc": "^3.0",
         "creativeorange/gravatar": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "http-interop/http-factory-guzzle": "^1.2",
         "intervention/image": "^2.5",
         "laravel/framework": "^11.0",
         "laravel/helpers": "^1.7",
         "laravel/octane": "^2.6",
         "laravel/scout": "*",
         "laravel/tinker": "^2.9",
+        "meilisearch/meilisearch-php": "^1.16",
         "spatie/image-optimizer": "^1.8",
         "spatie/laravel-missing-page-redirector": "^2.7",
         "spatie/laravel-sitemap": "^7.0",
@@ -68,7 +70,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

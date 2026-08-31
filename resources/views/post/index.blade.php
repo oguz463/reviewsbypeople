@@ -1,10 +1,28 @@
 <x-app-layout>
 <x-slot name="head">
-  <title>{{config('app.name') . ' - ' . __('Posts')}}</title>
-  <meta name="description" content="{{config('app.name') . ' - ' . __('Posts')}}">
+  @php $blogDescription = 'Buying tips, how-tos and product advice from ReviewsByPeople — mattresses and tents to dog care, home workouts, cameras and car maintenance.'; @endphp
+  <title>Blog: Buying Guides &amp; How-Tos | {{ config('app.name') }}</title>
+  <meta name="description" content="{{ $blogDescription }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{ $posts->currentPage() > 1 ? route('post.index') . '?page=' . $posts->currentPage() : route('post.index') }}" />
+  @if ($posts->previousPageUrl())<link rel="prev" href="{{ $posts->previousPageUrl() }}" />@endif
+  @if ($posts->nextPageUrl())<link rel="next" href="{{ $posts->nextPageUrl() }}" />@endif
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog: Buying Guides &amp; How-Tos" />
+  <meta property="og:description" content="{{ $blogDescription }}" />
+  <meta property="og:url" content="{{ route('post.index') }}" />
+  <meta property="og:site_name" content="{{ config('app.name') }}" />
 </x-slot>
 <div class="max-w-4xl px-6 mx-auto my-8">
-  <h1 class="text-4xl font-bold mb-8 uppercase text-center">{{__('Posts')}}</h1>
+  <nav aria-label="Breadcrumb" class="text-sm text-gray-500 mb-6">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <li><a href="{{ url('/') }}" class="hover:underline">{{ __('Home') }}</a></li>
+      <li aria-hidden="true" class="text-gray-300">/</li>
+      <li class="text-gray-700 font-medium" aria-current="page">{{ __('Blog') }}</li>
+    </ol>
+  </nav>
+  <h1 class="text-4xl font-bold mb-3 uppercase text-center">{{__('Blog')}}</h1>
+  <p class="text-gray-600 text-center max-w-2xl mx-auto mb-8">{{ $blogDescription }}</p>
   @forelse ($posts as $post)
     <section class="bg-white sm:flex rounded shadow-lg overflow-hidden items-center mb-8">
       <div class="flex-1 shadow relative">

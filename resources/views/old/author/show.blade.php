@@ -1,7 +1,6 @@
 @extends('old.layouts.app')
 @section('pageTitle', "Reviews By " . $user->name)
 @section('meta')
-<meta name="robots" content="noindex">
 <meta name="description" content="{{$user->name}}'s reviews - ReviewsByPeople.com">
 @endsection
 @section('content')

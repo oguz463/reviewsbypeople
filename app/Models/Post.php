@@ -30,10 +30,16 @@ class Post extends Model
         return (bool) $this->published_at;
     }
 
+    protected ?array $contentCache = null;
+
     public function getContentAttribute()
     {
+        if ($this->contentCache !== null) {
+            return $this->contentCache;
+        }
+
         $body = $this->body;
-        
+
         $tocMarkup = $body;
 
         preg_match_all('/(<[hH][1-6](?![^>]*class=\"[^\"]*noTOC[^\"]*\")[^>]*title=\"([^\"]*)\"[^>]*)>(.*)(<\/[hH][1-6])/', $tocMarkup, $matches);
@@ -63,7 +69,7 @@ class Post extends Model
 
         $body = str_replace("\n", " ", $body);
 
-        return ["body" => $body, "toc" => $toc];
+        return $this->contentCache = ["body" => $body, "toc" => $toc];
     }
 
     public function path()

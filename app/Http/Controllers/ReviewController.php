@@ -250,8 +250,6 @@ class ReviewController extends Controller
             if (Storage::exists('public/uploads/post' . $image)) {
                 $path = storage_path('app/public/uploads/post') . $image;
 
-                ImageOptimizer::optimize($path);
-
                 exec("cwebp -q 70 " . $path . " -o " . $path . ".webp");
             }
         }

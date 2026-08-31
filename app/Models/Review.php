@@ -31,8 +31,14 @@ class Review extends Model
 
     protected $guarded = [];
 
+    protected ?array $contentCache = null;
+
     public function getContentAttribute()
     {
+        if ($this->contentCache !== null) {
+            return $this->contentCache;
+        }
+
         $body = $this->body;
         $amazon = $this->amazon;
         if (isset($amazon->data["Errors"])) {
@@ -60,14 +66,14 @@ class Review extends Model
                 preg_match_all("/(?<=\")[^\s][^\"]+/", $data, $values);
                 $productData = array_combine($tags[0], $values[0]);
                 $encode = urlencode($productData["data-title"]);
-                $url = "https://www.amazon.com/s?k={$encode}&tag=anymode-20";
+                $url = "https://www.amazon.com/s?k={$encode}&tag=oguztkt-20";
                 $body = str_replace($productData["data-url"], $url, $body);
             } else { // product not in divs
                 preg_match_all("/href=\"(.+(?={$brokenAsin})[^\"]+)[^>]+.([^<\/]+)/", $body, $matches);
                 $find = $matches[1][0] ?? false;
                 $encode = isset($matches[2][0]) ? urlencode($matches[2][0]) : false;
                 if ($find && $encode) {
-                    $replace = "https://www.amazon.com/s?k={$encode}&tag=anymode-20";
+                    $replace = "https://www.amazon.com/s?k={$encode}&tag=oguztkt-20";
                     $body = str_replace($find, $replace, $body);
                 }
             }
@@ -108,7 +114,7 @@ class Review extends Model
 
         preg_match_all('/<div[^\n]+data-url="([^"]+)[^\n]+.<h3[^\n]+data-tag="([^"]+)[^\n]+/s', $body, $findBestones);
 
-        $body = str_replace('src="/storage/uploads', 'class="lazyload" width="400" height="400" data-src="/storage/uploads', $body);
+        $body = str_replace('src="/storage/uploads', 'loading="lazy" decoding="async" class="lazyload" width="400" height="400" data-src="/storage/uploads', $body);
 
         if (!empty($findBestones[2])) {
             foreach ($findBestones[0] as $key => $value) {
@@ -136,7 +142,7 @@ class Review extends Model
 
         $body = str_replace("\n", " ", $body);
 
-        return ["bestones" => $bestones, "body" => $body, "toc" => $toc];
+        return $this->contentCache = ["bestones" => $bestones, "body" => $body, "toc" => $toc];
     }
 
     public function path()
