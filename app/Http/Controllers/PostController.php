@@ -87,10 +87,17 @@ class PostController extends Controller
     public function show(Post $post)
     {
         if ($post->published_at !== null) {
-            $relateds = Post::search(str_replace('-', ' ', $post->slug))->take(5)
-            ->query(function ($query) {
-                $query->select(['id', 'title', 'seo_title', 'slug', 'img']);
-            })->get();
+            // A search-engine outage must never 5xx a content page (Google
+            // penalises the URL if it hits one) — degrade to no "related" list.
+            try {
+                $relateds = Post::search(str_replace('-', ' ', $post->slug))->take(5)
+                ->query(function ($query) {
+                    $query->select(['id', 'title', 'seo_title', 'slug', 'img']);
+                })->get();
+            } catch (\Throwable $e) {
+                report($e);
+                $relateds = collect();
+            }
 
             foreach ($relateds as $key => $related) {
                 if ($related->title === $post->title) {

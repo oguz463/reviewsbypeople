@@ -147,10 +147,18 @@ class ReviewController extends Controller
             if (isset($review->tags->tags)) {
                 $search = str_replace(',', ' ', $review->tags->tags);
                 $reviewTags = $review->tags ? explode(',', $review->tags->tags) : [];
-                $relateds = Review::search($search)->take(15)
-                    ->query(function ($query) {
-                        $query->select(['id', 'title', 'seo_title', 'slug', 'img']);
-                    })->get();
+
+                // A search-engine outage must never 5xx a content page (Google
+                // penalises the URL if it hits one) — degrade to no "related" list.
+                try {
+                    $relateds = Review::search($search)->take(15)
+                        ->query(function ($query) {
+                            $query->select(['id', 'title', 'seo_title', 'slug', 'img']);
+                        })->get();
+                } catch (\Throwable $e) {
+                    report($e);
+                    $relateds = collect();
+                }
 
                 foreach ($relateds as $key => $related) {
                     if ($related->title === $review->title) {
