@@ -77,10 +77,10 @@ class ReviewController extends Controller
                 ImageOptimizer::optimize($path . "/1218-609/{$fullname}");
 
                 exec("cwebp -q 70 " . $path . "/604-356/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
-                exec("cwebp -q 70 " . $path . "/98-98/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
-                exec("cwebp -q 70 " . $path . "/400-240/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
-                exec("cwebp -q 70 " . $path . "/303-182/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
-                exec("cwebp -q 70 " . $path . "/1218-609/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
+                exec("cwebp -q 70 " . $path . "/98-98/{$fullname}" . " -o " . $path . "/98-98/{$fullname}.webp");
+                exec("cwebp -q 70 " . $path . "/400-240/{$fullname}" . " -o " . $path . "/400-240/{$fullname}.webp");
+                exec("cwebp -q 70 " . $path . "/303-182/{$fullname}" . " -o " . $path . "/303-182/{$fullname}.webp");
+                exec("cwebp -q 70 " . $path . "/1218-609/{$fullname}" . " -o " . $path . "/1218-609/{$fullname}.webp");
             }
         }
 
@@ -241,6 +241,7 @@ class ReviewController extends Controller
                 ImageOptimizer::optimize($path . "/604-356/{$fullname}");
                 ImageOptimizer::optimize($path . "/98-98/{$fullname}");
                 ImageOptimizer::optimize($path . "/400-240/{$fullname}");
+                ImageOptimizer::optimize($path . "/303-182/{$fullname}");
                 ImageOptimizer::optimize($path . "/1218-609/{$fullname}");
 
                 exec("cwebp -q 70 " . $path . "/604-356/{$fullname}" . " -o " . $path . "/604-356/{$fullname}.webp");
@@ -257,6 +258,8 @@ class ReviewController extends Controller
         foreach ($images as $image) {
             if (Storage::exists('public/uploads/post' . $image)) {
                 $path = storage_path('app/public/uploads/post') . $image;
+
+                ImageOptimizer::optimize($path);
 
                 exec("cwebp -q 70 " . $path . " -o " . $path . ".webp");
             }
