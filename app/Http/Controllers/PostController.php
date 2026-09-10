@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Laravel\Facades\Image;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class PostController extends Controller
@@ -48,8 +48,8 @@ class PostController extends Controller
         $bigPicturePath = storage_path('app/public/uploads') . "/blog/{$fullname}";
         $smallPicturePath = storage_path('app/public/uploads') . "/blog/98-98/{$fullname}";
 
-        Image::make($image)->fit(1218, 609)->save($bigPicturePath);
-        Image::make($image)->fit(98, 98)->save($smallPicturePath);
+        Image::read($image->getRealPath())->cover(1218, 609)->save($bigPicturePath);
+        Image::read($image->getRealPath())->cover(98, 98)->save($smallPicturePath);
 
         ImageOptimizer::optimize($bigPicturePath);
         ImageOptimizer::optimize($smallPicturePath);
@@ -162,8 +162,8 @@ class PostController extends Controller
                 $bigPicturePath = storage_path('app/public/uploads') . "/blog/{$fullname}";
                 $smallPicturePath = storage_path('app/public/uploads') . "/blog/98-98/{$fullname}";
 
-                Image::make($image)->fit(1218, 609)->save($bigPicturePath);
-                Image::make($image)->fit(98, 98)->save($smallPicturePath);
+                Image::read($image->getRealPath())->cover(1218, 609)->save($bigPicturePath);
+                Image::read($image->getRealPath())->cover(98, 98)->save($smallPicturePath);
 
                 ImageOptimizer::optimize($bigPicturePath);
                 ImageOptimizer::optimize($smallPicturePath);

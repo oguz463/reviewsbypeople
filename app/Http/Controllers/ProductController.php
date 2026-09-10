@@ -8,7 +8,7 @@ use App\Models\Review;
 use App\Models\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Laravel\Facades\Image;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class ProductController extends Controller
@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $path = storage_path('app/public/uploads') . "/products/{$fullname}";
 
-        Image::make($image)->fit(400, 400)->save($path);
+        Image::read($image->getRealPath())->cover(400, 400)->save($path);
 
         ImageOptimizer::optimize($path);
 
@@ -163,7 +163,7 @@ class ProductController extends Controller
 
                 $path = storage_path('app/public/uploads') . "/products/{$fullname}";
 
-                Image::make($image)->fit(400, 400)->save($path);
+                Image::read($image->getRealPath())->cover(400, 400)->save($path);
 
                 ImageOptimizer::optimize($path);
 

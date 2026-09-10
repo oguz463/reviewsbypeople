@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 class AuthorController extends Controller
 {
@@ -72,7 +72,7 @@ class AuthorController extends Controller
                 $image = $request->file('avatar');
                 $fullname = str_slug(auth()->user()->name) . '.' . $image->extension();
                 $path = asset('storage/uploads/avatars/' . $fullname);
-                Image::make($image)->fit(100, 100)->save(storage_path('app/public/uploads/avatars/') . $fullname);
+                Image::read($image->getRealPath())->cover(100, 100)->save(storage_path('app/public/uploads/avatars/') . $fullname);
                 $user = auth()->user();
                 $user['meta->img'] = $path;
                 $user->save();

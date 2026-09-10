@@ -9,7 +9,7 @@ use App\Models\Tag;
 use App\Models\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Laravel\Facades\Image;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class ReviewController extends Controller
@@ -64,11 +64,11 @@ class ReviewController extends Controller
 
                 $path = storage_path('app/public/uploads');
 
-                Image::make($image)->fit(604, 356)->save($path . "/604-356/{$fullname}");
-                Image::make($image)->fit(98, 98)->save($path . "/98-98/{$fullname}");
-                Image::make($image)->fit(400, 240)->save($path . "/400-240/{$fullname}");
-                Image::make($image)->fit(303, 182)->save($path . "/303-182/{$fullname}");
-                Image::make($image)->fit(1218, 609)->save($path . "/1218-609/{$fullname}");
+                Image::read($image->getRealPath())->cover(604, 356)->save($path . "/604-356/{$fullname}");
+                Image::read($image->getRealPath())->cover(98, 98)->save($path . "/98-98/{$fullname}");
+                Image::read($image->getRealPath())->cover(400, 240)->save($path . "/400-240/{$fullname}");
+                Image::read($image->getRealPath())->cover(303, 182)->save($path . "/303-182/{$fullname}");
+                Image::read($image->getRealPath())->cover(1218, 609)->save($path . "/1218-609/{$fullname}");
 
                 ImageOptimizer::optimize($path . "/604-356/{$fullname}");
                 ImageOptimizer::optimize($path . "/98-98/{$fullname}");
@@ -232,11 +232,11 @@ class ReviewController extends Controller
 
                 $path = storage_path('app/public/uploads');
 
-                Image::make($image)->fit(604, 356)->save($path . "/604-356/{$fullname}");
-                Image::make($image)->fit(98, 98)->save($path . "/98-98/{$fullname}");
-                Image::make($image)->fit(400, 240)->save($path . "/400-240/{$fullname}");
-                Image::make($image)->fit(303, 182)->save($path . "/303-182/{$fullname}");
-                Image::make($image)->fit(1218, 609)->save($path . "/1218-609/{$fullname}");
+                Image::read($image->getRealPath())->cover(604, 356)->save($path . "/604-356/{$fullname}");
+                Image::read($image->getRealPath())->cover(98, 98)->save($path . "/98-98/{$fullname}");
+                Image::read($image->getRealPath())->cover(400, 240)->save($path . "/400-240/{$fullname}");
+                Image::read($image->getRealPath())->cover(303, 182)->save($path . "/303-182/{$fullname}");
+                Image::read($image->getRealPath())->cover(1218, 609)->save($path . "/1218-609/{$fullname}");
 
                 ImageOptimizer::optimize($path . "/604-356/{$fullname}");
                 ImageOptimizer::optimize($path . "/98-98/{$fullname}");
