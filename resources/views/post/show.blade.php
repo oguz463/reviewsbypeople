@@ -292,6 +292,7 @@
           <h2 class="font-bold uppercase text-2xl text-black">{{__('Comments')}}</h2>
           <form class="flex flex-col space-y-2 text-black" method="POST" action="{{route('add.comment', ['post', $post->id])}}">
             @csrf
+            <x-comment-honeypot />
             <h3 class="font-bold uppercase text-lg text-black">{{__('Have Something to Say?')}}</h3>
             <label for="comment" class="font-semibold">{{__('Leave a comment')}}:</label>
             <textarea id="comment" name="comment" class="w-full h-32 border border-gray-300 rounded" required></textarea>
@@ -318,6 +319,7 @@
               <section id="newComment" x-show="replyCommentToggle" @click.away="replyCommentToggle = false">
                 <form class="flex flex-col space-y-2" method="POST" action="{{route('add.comment', ['post', $post->id])}}">
                   @csrf
+                  <x-comment-honeypot />
                   <label for="comment-{{$comment->id}}" class="font-semibold">{{__('Comment')}}</label>
                   <textarea id="comment-{{$comment->id}}" name="comment" class="w-full h-16 border border-gray-300 rounded" required autofocus></textarea>
                   <span class="text-xs text-red-600">{{__('*Comments contain URLs are not allowed.')}}</span>

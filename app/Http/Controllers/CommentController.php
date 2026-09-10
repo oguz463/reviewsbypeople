@@ -11,6 +11,11 @@ class CommentController extends Controller
 {
     public function store($type, $type_id, Request $request)
     {
+        // Honeypot: humans never see the "website" field; bots fill it. Drop silently.
+        if (filled($request->input('website'))) {
+            return back();
+        }
+
         $model = 'App\\Models\\' . ucfirst($type);
         if (class_exists($model) && $modelRecord = $model::find($type_id)) {
             if ($modelRecord->comments === null) {

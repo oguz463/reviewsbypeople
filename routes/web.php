@@ -102,7 +102,7 @@ Route::get('/create', [ReviewController::class, 'create'])->name('review.create'
 Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store')->middleware('can:author');
 
 
-Route::post('/comment/{type}/{type_id}', [CommentController::class, 'store'])->name('add.comment');
+Route::post('/comment/{type}/{type_id}', [CommentController::class, 'store'])->name('add.comment')->middleware('throttle:5,1');
 
 Route::get('/inactive/post/{post:slug}', [PostController::class, 'showInactive'])->name('post.inactive')->middleware('can:admin');
 Route::get('/inactive/product/{product:slug}', [ProductController::class, 'showInactive'])->name('product.inactive')->middleware('can:admin');
