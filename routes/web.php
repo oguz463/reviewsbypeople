@@ -30,8 +30,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/redirect', [PageController::class, 'redirect']);
 
-Route::get('feed', [PageController::class, 'feed']);
-
 Route::middleware('can:admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/products', [AdminController::class, 'index'])->name('products');
