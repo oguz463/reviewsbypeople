@@ -295,7 +295,7 @@
 
 <aside x-data="{tocToggle: false}" class="fixed inset-y-1/2 right-0 xl:hidden" style="z-index:40">
   <button class="transform -rotate-90 px-2 -mr-16 -mt-2 pb-4 bg-white bg-opacity-70 text-lg text-gray-500 rounded border border-gray-500 border-dashed" @click="tocToggle = true">{{__('Table of Contents')}}</button>
-  <div class="fixed inset-0 h-screen w-screen flex flex-col items-center bg-white bg-opacity-95 toc-full" x-show="tocToggle" @click="tocToggle = false">
+  <div x-cloak class="fixed inset-0 h-screen w-screen flex flex-col items-center bg-white bg-opacity-95 toc-full" x-show="tocToggle" @click="tocToggle = false">
     <h2 class="text-2xl font-semibold mt-12">{{__('Table of Contents')}}</h2>
     <nav class="overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100 toc-content">{!!$review->content["toc"]!!}</nav>
   </div>
@@ -372,7 +372,7 @@
             <div class="flex space-x-2 items-center"><p><strong>{{$comment->author}}</strong> <span class="text-xs text-gray-500 uppercase">{{$comment->created_at->diffForHumans()}}</span></p></div>
             <p>{{$comment->body}}</p>
             <button class="text-left underline font-bold focus:outline-none" @click="replyCommentToggle = true">{{__('Reply')}}</button>
-            <section id="newComment" x-show="replyCommentToggle" @click.away="replyCommentToggle = false">
+            <section id="newComment" x-cloak x-show="replyCommentToggle" @click.away="replyCommentToggle = false">
               <form class="flex flex-col space-y-2" method="POST" action="{{route('add.comment', ['review', $review->id])}}">
                 @csrf
                 <x-comment-honeypot />

@@ -47,6 +47,8 @@
 
     <style>
 
+        [x-cloak] { display: none !important; }
+
         .js-cookie-consent.cookie-consent {
             position: fixed;
             background-color: #f3f3f3; 
