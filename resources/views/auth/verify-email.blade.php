@@ -2,7 +2,7 @@
     <x-slot name="head">
         <title>{{config('app.name') . ' - ' . __('Email Verification Page')}}</title>
         <meta name="description" content="{{config('app.name') . ' - ' . __('Email Verification Page')}}">
-    </x-slot
+    </x-slot>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
