@@ -49,6 +49,11 @@
 
         [x-cloak] { display: none !important; }
 
+        /* The rotated "Table of Contents" tab (mobile) sat ~12px past the
+           right edge, which iOS Safari turns into horizontal page scroll.
+           Trim its negative margin so it stops at the viewport edge. */
+        aside[x-data] > button { margin-right: -3rem; }
+
         .js-cookie-consent.cookie-consent {
             position: fixed;
             background-color: #f3f3f3; 
